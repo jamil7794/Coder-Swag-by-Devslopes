@@ -26,10 +26,10 @@ class dataService { //57
     ]
     
     private let hoodies = [
-        Product(title: "Hoodie01", price: "32", imageName: "hoodies01.png"),
-        Product(title: "Hoodie02", price: "32", imageName: "hoodies02.png"),
-        Product(title: "Hoodie03", price: "32", imageName: "hoodies03.png"),
-        Product(title: "Hoodie04", price: "32", imageName: "hoodies04.png")
+        Product(title: "Hoodie01", price: "$32", imageName: "hoodie01.png"),
+        Product(title: "Hoodie02", price: "$32", imageName: "hoodie02.png"),
+        Product(title: "Hoodie03", price: "$32", imageName: "hoodie03.png"),
+        Product(title: "Hoodie04", price: "$32", imageName: "hoodie04.png")
     ]
     
     private let shirts = [
@@ -41,11 +41,12 @@ class dataService { //57
     ]
     
     private let digitalGoods = [Product]()
+    
     func getCategories() -> [Category]{
         return categories
     }
     
-    func getProduct(title: String) -> [Product]{
+    func getProduct(forCategoryTitle title: String) -> [Product]{
         func getHats() ->[Product]{
             return hats
         }

@@ -9,7 +9,7 @@
 import UIKit
 
 class CategoriesVC: UIViewController, UITableViewDataSource, UITableViewDelegate {
-    
+   // Core
     @IBOutlet weak var categoryTable: UITableView!
 
     override func viewDidLoad() {
@@ -34,7 +34,23 @@ class CategoriesVC: UIViewController, UITableViewDataSource, UITableViewDelegate
             return CategoryCell()
         }
     }
-    
+    // Connecting to ProctVC..
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let category = dataService.instance.getCategories()[indexPath.row] // after selecting a caegory, data will be stored in this variable
+        performSegue(withIdentifier: "ProductsVC", sender: category) // Identifier should be the destination VC and sender should be the category we selected so we could use later on.
+    }
+    // Connecting to ProductVC
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if let productsVC = segue.destination as? ProductsVC{
+            let barBtn = UIBarButtonItem()
+            barBtn.title = ""
+            navigationItem.backBarButtonItem = barBtn
+            assert(sender as? Category != nil) // Making sure that the program runs correctly without any Problems. Asserting it. My app requires that the assertion is type category thats why we use it. Guard is for any type
+
+            productsVC.initProducts(category: sender as! Category) // Sender is the (c)ategory already in the system. We are implementing the sender here.
+            
+        }
+    }
     
 }
 
